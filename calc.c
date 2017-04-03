@@ -3,16 +3,16 @@
 
 int main(){
 	FILE *fp = NULL;
-	int operand1, operand2;
+	double operand1, operand2, result = 0;
 	char operator = ' ';
-	int result, line = 0;
+	int line = 0;
 
 	fp = fopen("read.txt","r");
 	if(fp!=NULL){
 		fscanf(fp, "%d", &line);
 	
 		for(int i=0; i<line; i++) {
-			fscanf(fp, "%d %c %d",&operand1, &operator, &operand2);
+			fscanf(fp, "%lf %c %lf",&operand1, &operator, &operand2);
 			switch(operator) {
 				case '+':
 				result = add(operand1, operator);
@@ -22,11 +22,12 @@ int main(){
 				break;
 				case '*':
 				result = mul(operand1, operator);
+				break;
 				case '/':
 				result = div(operand1, operator);
 				break;
 			}		
-			printf("%d %c %d = %d\n",
+			printf("%.lf %c %.lf = %lf\n",
 				 operand1, operator, operand2, result);
 		}
 	}
